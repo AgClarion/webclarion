@@ -92,7 +92,7 @@ export const update = async (
 
   return res.status(200).json(plan);
 };
-/* export const store = async (req: Request, res: Response): Promise<Response> => {
+ export const store = async (req: Request, res: Response): Promise<Response> => {
   const newPlan: StorePlanData = req.body;
 
   const schema = Yup.object().shape({
@@ -169,4 +169,4 @@ export const remove = async (
   const plan = await DeletePlanService(id);
 
   return res.status(200).json(plan);
-}; */
+}; 

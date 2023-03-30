@@ -593,7 +593,7 @@ async function handleLoginStatus(job) {
     try {
       const user = await User.findByPk(item.id);
       await user.update({ online: false });
-      logger.info(`Atendente passado para offline: ${item.id}`);
+      logger.info(`Usuário passado para offline: ${item.id}`);
     } catch (e: any) {
       Sentry.captureException(e);
     }
@@ -602,8 +602,7 @@ async function handleLoginStatus(job) {
 
 
 async function handleInvoiceCreate() {
-  logger.info("Iniciando geração de boletos");
-  const job = new CronJob('0 0 0 * * *', async () => {
+  const job = new CronJob('0 * * * * *', async () => {
 
 
     const companies = await Company.findAll();
@@ -680,7 +679,7 @@ Qualquer duvida estamos a disposição!
 handleInvoiceCreate()
 
 export async function startQueueProcess() {
-  logger.info("Iniciando processamento de setores");
+  logger.info("Iniciando processamento de filas");
 
   messageQueue.process("SendMessage", handleSendMessage);
 
